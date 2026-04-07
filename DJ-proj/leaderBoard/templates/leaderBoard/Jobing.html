@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html >
+<head>
+    <title>This Webpage is Mine</title>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #faebd7;
+            margin: 10px;
+
+        }
+
+    </style>
+	<script src="https://code.jquery.com/jquery-4.0.0.js"></script>
+    <script src="{% static 'leaderBoard/calculator.js' %}" ></script>
+    <script src="{% static 'leaderBoard/snake.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'leaderBoard/crasivenko.css' %}">
+</head>
+<body>
+	<h1>Это моя страничка. Таких страничек много, но эта страничка моя.</h1>
+		
+		<p id="result"></p>
+
+
+		<div id="actionField">
+		</div>
+		
+	<script>
+	var expression  = "";
+	
+	
+
+
+	function startAction(){
+
+
+		let selectSnake = document.createElement("button");
+		document.getElementById("actionField").appendChild(selectSnake);
+		selectSnake.innerHTML = "Змейка";
+		selectSnake.id = "snakeStartButton";
+		selectSnake.type = "button";
+		selectSnake.onclick = snakeStart;
+		let selectCalculator = document.createElement("button");
+		document.getElementById("actionField").appendChild(selectCalculator);
+		selectCalculator.innerHTML = "Калькулятор";
+		selectCalculator.id = "calculatorStartButton";
+		selectCalculator.type = "button";
+		selectCalculator.onclick = calculatorStart;
+		
+	}
+	startAction();
+	</script>
+	
+
+	
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

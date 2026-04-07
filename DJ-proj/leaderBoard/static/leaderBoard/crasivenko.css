@@ -1,0 +1,48 @@
+/*#snakeField {
+    width: 80%
+}*/
+#actionField {
+    background-color: #ffffff;
+    height: 800px;
+    width: 1000px;
+
+}
+.cells {
+    width: 30px;
+    height: 30px;
+    border: 1px solid;
+}
+#info {
+    float: left;
+    margin: 15px;
+}
+#snakeField {
+    float: left;
+}
+.form_div {
+    position: fixed;
+    width: 30%;
+    height: 20%;
+    left: 35%;
+    top: 35%;
+    z-index: 10;
+    background-color: #ffffff;
+    border-radius: 10%;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+}
+.freezed {
+    overflow: hidden;
+}
+#shadow {
+    background: transparent;
+    display: block;
+    z-index: 9;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 70%;
+}
