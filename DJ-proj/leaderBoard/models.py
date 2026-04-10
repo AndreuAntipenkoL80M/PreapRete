@@ -14,6 +14,11 @@ class PlayerScores(models.Model):
     class Meta:
         managed = True
         db_table = 'player_scores'
-        
+    
+class TestTable(models.Model):
+    name = models.CharField(max_length=40, blank=True, null=True)
+    massege = models.TextField(max_length=200, blank=True)
+    numbers = models.IntegerField(blank=True, null=True)
+
         
         

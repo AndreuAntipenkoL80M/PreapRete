@@ -93,7 +93,7 @@ function createField (size1){
 		for (let i in leaderBoard)
 			infoLeaderBoard.innerHTML += "<br>" + leaderBoard[i].name + ": " + leaderBoard[i].score;		 
 	}
-	requestPlayers.open("GET", "http://127.0.0.1:8000/ajax_get_player_scores");
+	requestPlayers.open("GET", "http://0.0.0.0:8000/ajax_get_player_scores");
 	requestPlayers.send();
 
 	/*fetch('http://127.0.0.1:8000/ajax_get_player_scores', {
@@ -129,7 +129,7 @@ function sendData(name, score){
 		'score': score
 	})
 
-	postPlayers.open("POST", "http://127.0.0.1:8000/ajax_post_player_scores");
+	postPlayers.open("POST", "http://0.0.0.0:8000/ajax_post_player_scores");
 	postPlayers.setRequestHeader('X-CSRFToken', csrftoken,);
 	postPlayers.setRequestHeader('charset', 'utf-8');
 	postPlayers.setRequestHeader('Content-type', 'application/json');
@@ -159,7 +159,7 @@ function sendData(name, score){
 			form.classList.add("form_div");
 			
 			const getForm = new XMLHttpRequest();
-			getForm.open("GET", "http://127.0.0.1:8000/request_form");
+			getForm.open("GET", "http://0.0.0.0:8000/request_form");
 			getForm.send();
 			getForm.onload = function() {
 				document.getElementById("form_div").innerHTML = this.response;

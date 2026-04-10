@@ -18,7 +18,7 @@ services:
     volumes:
       - postgres_test:/var/lib/postgresql/18/data
     ports:
-      - 0.0.0.0:5435:5435
+      - 5435:5432
     environment:
       POSTGRES_DB: ${POSTGRES_DB} 
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
