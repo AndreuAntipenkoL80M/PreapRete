@@ -32,7 +32,7 @@ function snakeStart () {
 		sizeButton.innerHTML = size;
 		sizeButton.id = "size"+size;
 		sizeButton.type = "button";
-		sizeButton.onclick = function(){	createField(size)
+		sizeButton.onclick = function(){createField(size)
 
 		};
 	}
@@ -128,16 +128,12 @@ function sendData(name, score){
 		'name': name,
 		'score': score
 	})
-
 	postPlayers.open("POST", "http://0.0.0.0:8000/ajax_post_player_scores");
 	postPlayers.setRequestHeader('X-CSRFToken', csrftoken,);
 	postPlayers.setRequestHeader('charset', 'utf-8');
 	postPlayers.setRequestHeader('Content-type', 'application/json');
 	postPlayers.send(record);
 	postPlayers.onload = function(){
-		document.getElementById("shadow").remove();
-		document.getElementById("form_div").remove();
-		document.body.classList.remove('freezed');
 		document.getElementById("infoLeaderBoard").innerHTML='';
 		const leaderBoard = JSON.parse(this.responseText);
 		for (let i in leaderBoard)
@@ -149,7 +145,6 @@ function sendData(name, score){
 
 	game().then(
 		function (score) {
-			//window.alert(score+" end score");
 			let shadow = document.createElement("div");
 			document.body.appendChild(shadow);
 			shadow.id="shadow";
@@ -159,13 +154,15 @@ function sendData(name, score){
 			form.classList.add("form_div");
 			
 			const getForm = new XMLHttpRequest();
-			getForm.open("GET", "http://0.0.0.0:8000/request_form");
+			getForm.open("GET", "http://0.0.0.0:8000/send_game_instance");
 			getForm.send();
 			getForm.onload = function() {
 				document.getElementById("form_div").innerHTML = this.response;
-				document.getElementById("form_form").addEventListener('submit', event => {event.preventDefault();
-					sendData(document.getElementById("form_form").elements['name'].value, score);
-					
+				document.getElementById("req_unindent_player").addEventListener('submit', event => {
+					event.preventDefault();
+					sendData(document.getElementById("req_unindent_player").elements['name'].value, score);
+					document.getElementById("form_div").remove();
+					document.getElementById("shadow").remove();
 
 				})
 			}
@@ -175,9 +172,6 @@ function sendData(name, score){
 
 			//endGame();
 		},
-		(function (){
-			//endGame();
-		})()
 	);
 }
 
@@ -186,6 +180,7 @@ function endGame() {
 	document.getElementById("endButton").remove();
 	document.getElementById("info").remove();
 	document.getElementById("tooltip").remove();
+	document.body.classList.remove('freezed');
 	startAction();
 }
 
@@ -215,7 +210,6 @@ async function game(){
 	body[0] = new tail();
 	body[0].x = headx;
 	body[0].y = heady;
-	console.log(body[0].x);
 	let previousDirection = "Right";
 
 
@@ -240,10 +234,6 @@ async function game(){
 
 		console.log (headx + " " + heady);
 
-
-		/*if (score >= 5) {
-			clearInterval(axsaxsxa);
-			return resolve(score)}*/
 		resolve();
 	}
 
@@ -271,7 +261,7 @@ async function game(){
 
 
 
-	return score
+return score
 
 
 
@@ -391,8 +381,6 @@ async function game(){
 			document.getElementById("cell "+arr[i].x+" "+arr[i].y).innerHTML = "T";
 		}
 	}
-
-
 }
 
 

@@ -13,13 +13,17 @@
         }
 
     </style>
+	<script src="{% static 'leaderBoard/auth.js' %}"></script>
 	<script src="https://code.jquery.com/jquery-4.0.0.js"></script>
     <script src="{% static 'leaderBoard/calculator.js' %}" ></script>
     <script src="{% static 'leaderBoard/snake.js' %}"></script>
 	<link rel="stylesheet" href="{% static 'leaderBoard/crasivenko.css' %}">
 </head>
 <body>
-	<h1>Это моя страничка. Таких страничек много, но эта страничка моя.</h1>
+	<div id="profile" onclick="checkUsersAuth()">	
+	</div>
+	<h1 id="main_header">Это моя страничка. Таких страничек много, но эта страничка моя.</h1>
+	<h3 id='dialog_with_user'></h3>
 		
 		<p id="result"></p>
 
@@ -34,8 +38,6 @@
 
 
 	function startAction(){
-
-
 		let selectSnake = document.createElement("button");
 		document.getElementById("actionField").appendChild(selectSnake);
 		selectSnake.innerHTML = "Змейка";
@@ -48,8 +50,9 @@
 		selectCalculator.id = "calculatorStartButton";
 		selectCalculator.type = "button";
 		selectCalculator.onclick = calculatorStart;
-		
 	}
+
+
 	startAction();
 	</script>
 	

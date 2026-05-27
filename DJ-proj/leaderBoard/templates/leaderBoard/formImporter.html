@@ -2,13 +2,18 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-    </head>
+
     <body>
-        <p>Ваш счёт:</p>
-        <form id = form_form name = form_form>
+        <h4>{{ form_header }}</h4>
+        <form {{formmethod}} id = {{formid}} name = {{formid}}>
+            {% csrf_token %}
             {{ form }}
-            <input type="submit" value="Принять">
+            <input id="submitor" type="submit" value="Принять">
         </form>
+        <button id="skip_recording" type="button" onclick="
+            document.getElementById('form_div').remove();
+	        document.getElementById('shadow').remove();"
+        >Пропустить</button> 
+        
     </body>
 </html>
