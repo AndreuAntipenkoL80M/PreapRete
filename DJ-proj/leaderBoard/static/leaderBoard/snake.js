@@ -90,8 +90,14 @@ function createField (size1){
 		infoLeaderBoard.id = "infoLeaderBoard";
 		infoLeaderBoard.type = "p";
 		const leaderBoard = JSON.parse(this.responseText);
-		for (let i in leaderBoard)
-			infoLeaderBoard.innerHTML += "<br>" + leaderBoard[i].name + ": " + leaderBoard[i].score;		 
+		for (let i in leaderBoard){
+			if (leaderBoard[i].username){
+				star = "&ast;"
+			} else{
+				star = ""
+			}
+			infoLeaderBoard.innerHTML += "<br>" + star + leaderBoard[i].name + ": " + leaderBoard[i].score;		
+		}	 
 	}
 	requestPlayers.open("GET", "http://0.0.0.0:8000/ajax_get_player_scores");
 	requestPlayers.send();
@@ -144,35 +150,38 @@ function sendData(name, score){
 
 
 	game().then(
-		function (score) {
-			let shadow = document.createElement("div");
-			document.body.appendChild(shadow);
-			shadow.id="shadow";
-			let form = document.createElement("div");
-			document.body.appendChild(form);
-			form.id = "form_div"
-			form.classList.add("form_div");
-			
+		function (score) {			
 			const getForm = new XMLHttpRequest();
 			getForm.open("GET", "http://0.0.0.0:8000/send_game_instance");
 			getForm.send();
 			getForm.onload = function() {
-				document.getElementById("form_div").innerHTML = this.response;
-				document.getElementById("req_unindent_player").addEventListener('submit', event => {
-					event.preventDefault();
-					sendData(document.getElementById("req_unindent_player").elements['name'].value, score);
-					document.getElementById("form_div").remove();
-					document.getElementById("shadow").remove();
+				is_user_auth = getForm.getResponseHeader("user_is_auth")
+				console.log(is_user_auth)
+				if (is_user_auth == "False"){
+					let shadow = document.createElement("div");
+					document.body.appendChild(shadow);
+					shadow.id="shadow";
+					let form = document.createElement("div");
+					document.body.appendChild(form);
+					form.id = "form_div"
+					form.classList.add("form_div");
 
-				})
+					document.getElementById("form_div").innerHTML = this.response;
+					document.getElementById("req_unindent_player").addEventListener('submit', event => {
+						event.preventDefault();
+						sendData(document.getElementById("req_unindent_player").elements['name'].value, score);
+						document.getElementById("form_div").remove();
+						document.getElementById("shadow").remove()
+					})
+				}
+				else if (is_user_auth == "True") {
+					name = this.responseText
+					needless_name = JSON.parse(name);
+					sendData(needless_name.user, score)
+				}
 			}
-			
-
-
-
-			//endGame();
-		},
-	);
+		}
+	)
 }
 
 function endGame() {

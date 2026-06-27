@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <ul>
+            {% if exist_user_to_auth %}
+                <li><button id ="upd" onclick="processUsersAuth('/upd_user')">Изменить данные</button></li>
+                <li><button id ="pass" onclick = "processUsersAuth('/upd_pass')"> Изменить пароль</button></li>
+                <li><button id ="del" onclick="processUsersAuth('/del_user')">Удалить учетную запись</button></li>
+                <li><button id ="login" onclick="processUsersAuth('/auth_handler')">Зайти в другую учетную запись</button></li>
+                <li><button id ="reg" onclick="processUsersAuth('/reg_user')">Создать новую учетную запись</button></li>
+                <li><button id ="exit" onclick="processUsersAuth('/user_exit')">Выйти из учетной записи</button></li>
+            {% else %}
+                <li><button id ="login" onclick="processUsersAuth('/auth_handler')">Зайти в учетную запись</button></li>
+                <li><button id ="reg" onclick="processUsersAuth('/reg_user')">Создать учетную запись</button></li>
+            {% endif %}
+        </ul>
+        <button id="skip_recording" type="button" onclick="
+            document.getElementById('dialog_div').remove();
+	        document.getElementById('shadow').remove();"
+        >Пропустить</button> 
+        
+    </body>
+</html>
