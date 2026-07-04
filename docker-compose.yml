@@ -29,7 +29,14 @@ services:
       retries: 5
       start_period: 30s
       timeout: 10s
-    
+  server:
+    image: httpd:latest
+    container_name: apache_test
+    ports:
+     - 80:80
+    restart: always
+    volumes:
+      - ./html:/usr/local/apache2/htdocs   
 
 volumes:
   postgres_test:
