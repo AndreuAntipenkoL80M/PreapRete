@@ -8,10 +8,13 @@ services:
       - 8000:8000
     volumes:
       - ./DJ-proj:/app_but_where_is_it
+      - leaderBoard_static:/app_but_where_is_it/staticiles
     depends_on:
       db:
         condition: service_healthy
         restart: true
+      server:
+        condition: service_started
   db:
     image: postgres:latest
     container_name: postgres_test
@@ -33,10 +36,14 @@ services:
     image: httpd:latest
     container_name: apache_test
     ports:
-     - 80:80
+     - 8080:80
     restart: always
     volumes:
-      - ./html:/usr/local/apache2/htdocs   
+      - ./html/conf:/usr/local/apache2/conf
+      - leaderBoard_static:/usr/local/apache2/staticiles
+
+
 
 volumes:
+  leaderBoard_static:
   postgres_test:

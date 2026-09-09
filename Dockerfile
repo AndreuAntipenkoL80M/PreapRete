@@ -1,4 +1,4 @@
-FROM python:3.15.0a7-bookworm
+FROM python:3.15.0rc1-bookworm
 
 ENV PYTHONUNBUFFERED=1
 
@@ -14,4 +14,8 @@ COPY DJ-proj/ .
 
 EXPOSE 8000
 
-CMD python manage.py runserver 0.0.0.0:8000
+RUN python manage.py collectstatic --noinput
+
+CMD gunicorn server_side_mySite.wsgi --bind 0.0.0.0:8000
+
+
