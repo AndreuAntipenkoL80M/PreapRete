@@ -4,8 +4,6 @@ services:
     container_name: django_test
     env_file:
       - .env
-    ports:
-      - 8000:8000
     volumes:
       - ./DJ-proj:/app_but_where_is_it
       - leaderBoard_static:/app_but_where_is_it/staticiles

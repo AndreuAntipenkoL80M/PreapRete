@@ -16,7 +16,6 @@ class PlayerScores(models.Model):
     game_record_id = models.AutoField(primary_key=True)
 
     class Meta:
-        managed = True
         db_table = 'player_scores'
     
 class TestTable(models.Model):

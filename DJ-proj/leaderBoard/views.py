@@ -4,13 +4,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import PlayerScores
 from .forms import getPlayerName, registerUser, loginUser, updateUser, updatePassword
-import json
+import json, os
 
 
 def index(request):
-    return render(request, 'leaderBoard/Jobing.html')
-#def addition(request):
-#    return render()
+    ip = os.environ["IP"]
+    return render(request, 'leaderBoard/Jobing.html', {"IP":ip})
+
 
 def ajax_get_player_scores(request):
     scores = PlayerScores.objects.all().values('name', 'score', 'username')

@@ -1,5 +1,5 @@
 	function checkUsersAuth(){
-		fetch('http://157.22.231.30:8000/profile_handler', {
+		fetch('http://${addr}:8080/profile_handler', {
 			method: 'GET',
 		}).then(
 			response => {
@@ -45,7 +45,7 @@
                 form.addEventListener('submit', (e) => {
                     e.preventDefault()
                     const data = new FormData(form)
-					fetch(`http://157.22.231.30:8000${backAddress}`, {
+					fetch(`http://${addr}:8080${backAddress}`, {
 						method: "POST",
 						headers:{
 							'X-CSRFToken': csrftoken,
