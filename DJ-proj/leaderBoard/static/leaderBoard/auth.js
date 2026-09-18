@@ -48,7 +48,7 @@ const addrFA = dataFA.adrr;
                 form.addEventListener('submit', (e) => {
                     e.preventDefault()
                     const data = new FormData(form)
-					fetch(`http://${addr}:8080${backAddress}`, {
+					fetch(`http://${addrFA}:8080${backAddress}`, {
 						method: "POST",
 						headers:{
 							'X-CSRFToken': csrftoken,
