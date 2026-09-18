@@ -1,5 +1,5 @@
-const data = document.currentScript.dataset;
-const addr = data.adrr; 
+const dataFS = document.currentScript.dataset;
+const addrFS = dataFS.adrr; 
 
 function getCookie(name) {
     let cookieValue = null;

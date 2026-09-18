@@ -1,8 +1,8 @@
-const data = document.currentScript.dataset;
-const addr = data.adrr; 
+const dataFA = document.currentScript.dataset;
+const addrFA = dataFA.adrr; 
 
 	function checkUsersAuth(){
-		fetch(`http://${addr}/profile_handler`, {
+		fetch(`/profile_handler`, {
 			method: 'GET',
 		}).then(
 			response => {
