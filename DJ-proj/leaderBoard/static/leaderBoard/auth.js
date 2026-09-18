@@ -1,5 +1,6 @@
 const dataFA = document.currentScript.dataset;
 const addrFA = dataFA.adrr; 
+console.log(addrFA)
 
 	function checkUsersAuth(){
 		fetch(`/profile_handler`, {

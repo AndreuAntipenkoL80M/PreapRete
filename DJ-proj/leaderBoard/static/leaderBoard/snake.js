@@ -1,5 +1,6 @@
 const dataFS = document.currentScript.dataset;
-const addrFS = dataFS.adrr; 
+const addrFS = dataFS.adrr;
+console.log(addrFS)
 
 function getCookie(name) {
     let cookieValue = null;
@@ -100,7 +101,7 @@ function createField (size1){
 			infoLeaderBoard.innerHTML += "<br>" + star + leaderBoard[i].name + ": " + leaderBoard[i].score;		
 		}	 
 	}
-	requestPlayers.open("GET", "http://${addrFS}:8080/ajax_get_player_scores");
+	requestPlayers.open("GET", `http://${addrFS}:8080/ajax_get_player_scores`);
 	requestPlayers.send();
 
 	/*fetch('http://127.0.0.1:8000/ajax_get_player_scores', {
@@ -135,7 +136,7 @@ function sendData(name, score){
 		'name': name,
 		'score': score
 	})
-	postPlayers.open("POST", "http://${addrFS}:8080/ajax_post_player_scores");
+	postPlayers.open("POST", `http://${addrFS}:8080/ajax_post_player_scores`);
 	postPlayers.setRequestHeader('X-CSRFToken', csrftoken,);
 	postPlayers.setRequestHeader('charset', 'utf-8');
 	postPlayers.setRequestHeader('Content-type', 'application/json');
@@ -153,7 +154,7 @@ function sendData(name, score){
 	game().then(
 		function (score) {			
 			const getForm = new XMLHttpRequest();
-			getForm.open("GET", "http://${addrFS}:8080/send_game_instance");
+			getForm.open("GET", `http://${addrFS}:8080/send_game_instance`);
 			getForm.send();
 			getForm.onload = function() {
 				is_user_auth = getForm.getResponseHeader("user_is_auth")
